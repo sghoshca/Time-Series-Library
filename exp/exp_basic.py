@@ -64,6 +64,8 @@ class Exp_Basic(object):
         else:
             device = torch.device('cpu')
             print('Use CPU')
+        # device = torch.device('cpu')
+        # print('Use CPU')
         return device
 
     def _get_data(self):
