@@ -2,6 +2,22 @@ export CUDA_VISIBLE_DEVICES=0
 
 model_name=iTransformer
 
+## Parameters to be added 
+--target HPI -- Nominal_house_price_indices
+--features MS # multivariate predict univariate
+--freq Q # quarterly data
+
+## Common settings
+# root_path = ./dataset/ETT-small/, data_path = ETTh2.csv
+# task_name = long_term_forecast, is_training = 1
+# des = exp, data = ETTh2, features = M
+# e_layers = 2, d_layers = 1, factor = 3, enc_in = 7, dec_in = 7, c_out = 7
+# d_model = 128, d_ff = 128, itr = 1
+
+## Different settings
+# seq_len = 96, label_len = 48, pred_len = 96, 192, 336, 720
+# model_id = ETTh2_96_96, ETTh2_96_96, ETTh2_96_336, ETTh2_96_720
+
 python -u run.py \
   --task_name long_term_forecast \
   --is_training 1 \
@@ -23,7 +39,9 @@ python -u run.py \
   --des 'Exp' \
   --d_model 128 \
   --d_ff 128 \
-  --itr 1
+  --itr 1 \
+  --use_gpu True
+
 
 python -u run.py \
   --task_name long_term_forecast \
@@ -46,7 +64,9 @@ python -u run.py \
   --des 'Exp' \
   --d_model 128 \
   --d_ff 128 \
-  --itr 1
+  --itr 1 \
+  --use_gpu True
+
 
 python -u run.py \
   --task_name long_term_forecast \
@@ -69,7 +89,9 @@ python -u run.py \
   --des 'Exp' \
   --d_model 128 \
   --d_ff 128 \
-  --itr 1
+  --itr 1 \
+  --use_gpu True
+
 
 python -u run.py \
   --task_name long_term_forecast \
@@ -92,4 +114,6 @@ python -u run.py \
   --des 'Exp' \
   --d_model 128 \
   --d_ff 128 \
-  --itr 1
+  --itr 1 \
+  --use_gpu True
+
