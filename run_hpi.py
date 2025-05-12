@@ -88,12 +88,12 @@ if __name__ == '__main__':
                         help='the length of segmen-wise iteration of SegRNN')
 
     # optimization
-    parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
+    parser.add_argument('--num_workers', type=int, default=20, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')
-    parser.add_argument('--train_epochs', type=int, default=10, help='train epochs')
+    parser.add_argument('--train_epochs', type=int, default=20, help='train epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
     parser.add_argument('--patience', type=int, default=3, help='early stopping patience')
-    parser.add_argument('--learning_rate', type=float, default=0.0001, help='optimizer learning rate')
+    parser.add_argument('--learning_rate', type=float, default=0.001, help='optimizer learning rate')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='MSE', help='loss function')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
@@ -213,12 +213,16 @@ if __name__ == '__main__':
 # seq_len = 96, label_len = 48, pred_len = 96, 192, 336, 720
 # model_id = ETTh2_96_96, ETTh2_96_96, ETTh2_96_336, ETTh2_96_720
 
-            print('Time run start: ', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))  
+            print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))  
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
             exp.train(setting)
+            print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+
+            print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
             exp.test(setting)
+            print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             if args.gpu_type == 'mps':
                 torch.backends.mps.empty_cache()
             elif args.gpu_type == 'cuda':
@@ -247,9 +251,10 @@ if __name__ == '__main__':
             args.distil,
             args.des, ii)
 
+        print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
         exp.test(setting, test=1)
-        
+        print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         if args.gpu_type == 'mps':
             torch.backends.mps.empty_cache()
         elif args.gpu_type == 'cuda':
