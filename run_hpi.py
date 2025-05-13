@@ -72,7 +72,7 @@ if __name__ == '__main__':
                         help='whether to use distilling in encoder, using this argument means not using distilling',
                         default=True)
     parser.add_argument('--dropout', type=float, default=0.1, help='dropout')
-    parser.add_argument('--embed', type=str, default='timeF',
+    parser.add_argument('--embed', type=str, default='fixed',
                         help='time features encoding, options:[timeF, fixed, learned]')
     parser.add_argument('--activation', type=str, default='gelu', help='activation')
     parser.add_argument('--channel_independence', type=int, default=1,
@@ -88,12 +88,12 @@ if __name__ == '__main__':
                         help='the length of segmen-wise iteration of SegRNN')
 
     # optimization
-    parser.add_argument('--num_workers', type=int, default=20, help='data loader num workers')
+    parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')
-    parser.add_argument('--train_epochs', type=int, default=20, help='train epochs')
+    parser.add_argument('--train_epochs', type=int, default=15, help='train epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
     parser.add_argument('--patience', type=int, default=3, help='early stopping patience')
-    parser.add_argument('--learning_rate', type=float, default=0.001, help='optimizer learning rate')
+    parser.add_argument('--learning_rate', type=float, default=0.0001, help='optimizer learning rate')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='MSE', help='loss function')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
@@ -202,16 +202,6 @@ if __name__ == '__main__':
                 args.distil,
                 args.des, ii)
 
-## Common settings
-# root_path = ./dataset/ETT-small/, data_path = ETTh2.csv
-# task_name = long_term_forecast, is_training = 1
-# des = exp, data = ETTh2, features = M
-# e_layers = 2, d_layers = 1, factor = 3, enc_in = 7, dec_in = 7, c_out = 7
-# d_model = 128, d_ff = 128, itr = 1
-
-## Different settings
-# seq_len = 96, label_len = 48, pred_len = 96, 192, 336, 720
-# model_id = ETTh2_96_96, ETTh2_96_96, ETTh2_96_336, ETTh2_96_720
 
             print('Time Now: ', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))  
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
