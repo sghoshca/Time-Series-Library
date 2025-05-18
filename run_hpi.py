@@ -36,7 +36,7 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=str, default='MS',
                         help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, S:univariate predict univariate, MS:multivariate predict univariate')
     parser.add_argument('--target', type=str, default='OT', help='target feature in S or MS task')
-    parser.add_argument('--freq', type=str, default='q',
+    parser.add_argument('--freq', type=str, default='m',
                         help='freq for time features encoding, options:[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly, q:quarterly], you can also use more detailed freq like 15min or 3h')
     parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location of model checkpoints')
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     parser.add_argument('--use_norm', type=int, default=1, help='whether to use normalize; True 1 False 0')
     parser.add_argument('--down_sampling_layers', type=int, default=0, help='num of down sampling layers')
     parser.add_argument('--down_sampling_window', type=int, default=1, help='down sampling window size')
-    parser.add_argument('--down_sampling_method', type=str, default=None,
+    parser.add_argument('--down_sampling_method', type=str, default='avg',
                         help='down sampling method, only support avg, max, conv')
     parser.add_argument('--seg_len', type=int, default=96,
                         help='the length of segmen-wise iteration of SegRNN')

@@ -97,6 +97,7 @@ class TimeFeatureEmbedding(nn.Module):
     def __init__(self, d_model, embed_type='timeF', freq='h'):
         super(TimeFeatureEmbedding, self).__init__()
 
+#[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly, q:quarterly]
         freq_map = {'h': 4, 't': 5, 's': 6,
                     'm': 1, 'a': 1, 'w': 2, 'd': 3, 'b': 3}
         d_inp = freq_map[freq]
