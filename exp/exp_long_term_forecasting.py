@@ -224,9 +224,9 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     
-                    # split the file name to tak name only not extension 
-                    test_filename = str(self.args.data_path).split('.')[0]
-                    visual(gt, pd, os.path.join(folder_path, test_filename + str(i) + '.pdf'))
+                    # split the file name to take name only not extension 
+                    test_filename = str(self.args.data_path).split('.')[0]+'_pred_'+str(self.args.pred_len)
+                    visual(gt, pd, os.path.join(folder_path, test_filename + '_' + str(i) + '.pdf'))
 
         preds = np.concatenate(preds, axis=0)
         trues = np.concatenate(trues, axis=0)

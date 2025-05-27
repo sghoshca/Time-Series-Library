@@ -3,12 +3,17 @@ export CUDA_VISIBLE_DEVICES=0
 cd "$(dirname "$0")"
 datetimestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 
-train_epochs=20
+train_epochs=10
 seq_len=200
 # label_len=40
 des=Exp
 itr=1
 embed=timeF
+c_in=16
+down_sampling_layers=3
+down_sampling_window=2
+
+
 
 for label_len in 50
 do
@@ -33,8 +38,8 @@ python -u ../../run_hpi.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 16 \
-  --dec_in 16 \
+  --enc_in $c_in \
+  --dec_in $c_in \
   --c_out 1 \
   --d_model 128 \
   --d_ff 128 \
@@ -57,11 +62,14 @@ python -u ../../run_hpi.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
-  --enc_in 16 \
-  --dec_in 16 \
+  --enc_in $c_in \
+  --dec_in $c_in \
   --c_out 1 \
   --d_model 64 \
-  --d_ff 128 
+  --d_ff 128 \
+  --down_sampling_layers $down_sampling_layers \
+  --down_sampling_method avg \
+  --down_sampling_window $down_sampling_window
 
 done 
 

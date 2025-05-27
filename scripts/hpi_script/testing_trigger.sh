@@ -4,11 +4,12 @@ echo "START HPI experiments..."
 echo "----------------------------------------"
 echo "time: $(date +"%Y-%m-%d_%H-%M-%S")"
 
-sh iTransformer.sh >> ./log/iTransformer.log 2>&1 
 
-# sh PatchTST_test.sh >> ./log/PatchTST.log 2>&1 
+# sh testing_bestModel_allPred.sh >> ./log/testing.log 2>&1 
 
-# sh iTransformer.sh > ./log/iTransformer-$(date +"%Y-%m-%d_%H-%M-%S").log 2>&1 
+# sh testing_allModel_40Pred.sh >> ./log/testing.log 2>&1 
+
+sh testing_allModel_120Pred.sh >> ./log/testing.log 2>&1 
 
 echo "END HPI experiments..."
 echo "----------------------------------------"

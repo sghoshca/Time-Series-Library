@@ -99,7 +99,7 @@ class TimeFeatureEmbedding(nn.Module):
 
 #[s:secondly, t:minutely, h:hourly, d:daily, b:business days, w:weekly, m:monthly, q:quarterly]
         freq_map = {'h': 4, 't': 5, 's': 6,
-                    'm': 1, 'a': 1, 'w': 2, 'd': 3, 'b': 3}
+                    'm': 1, 'a': 1, 'w': 2, 'd': 3, 'b': 3, 'q': 1}
         d_inp = freq_map[freq]
         self.embed = nn.Linear(d_inp, d_model, bias=False)
 

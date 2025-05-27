@@ -89,6 +89,8 @@ def visual(true, preds=None, name='./pic/test.pdf'):
         plt.plot(preds, label='Prediction', linewidth=2)
     plt.plot(true, label='GroundTruth', linewidth=2)
     plt.legend()
+    filename=name.split('/')[-1].split('.')[0]
+    plt.title(filename)
     plt.savefig(name, bbox_inches='tight')
 
 
